@@ -8,7 +8,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
-  const { signUp } = useContext(AuthContext);
+  const { signUp, GoogleSignIn } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
@@ -53,6 +53,21 @@ const SignUp = () => {
         const errorCodeWithoutAuth = errorCode.replace(/^auth\//, "");
         const formattedErrorCode = errorCodeWithoutAuth.replace(/-/g, " ");
         setError(formattedErrorCode);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    GoogleSignIn()
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Successfully created your account");
+        setTimeout(function () {
+          // console.log("redirect");
+          location.reload();
+          window.location.href = "/";
+        }, 2000);
+      })
+      .catch((error) => {
+        toast.error(error);
       });
   };
   const handleShowPassword = () => {
@@ -146,7 +161,12 @@ const SignUp = () => {
 
           <div className="flex gap-2 mx-auto mb-5">
             <div>
-              <button className="btn">
+              <button
+                className="btn"
+                onClick={() => {
+                  handleGoogleSignIn;
+                }}
+              >
                 <svg
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
