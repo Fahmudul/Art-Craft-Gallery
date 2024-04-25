@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
-import '../../assets/Utility.css'
+import "../../assets/Utility.css";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 const Signin = () => {
+  const { logIn } = useContext(AuthContext);
+
   const [show, setShow] = useState(false);
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -11,22 +15,22 @@ const Signin = () => {
     const email = data.get("email");
     const password = data.get("password");
     console.log(email, password);
-    // logIn(email, password)
-    //   .then((result) => {
-    //     console.log(result.user);
-    //     toast.success("Logged in Successfully");
-    //     setTimeout(function () {
-    //       window.location.href = "/";
-    //     }, 2000);
-    //   })
-    //   .catch((error) => {
-    //     const errorMessages = error.message;
-    //     const errorCode = errorMessages.split("(")[1].split(")")[0];
-    //     const errorCodeWithoutAuth = errorCode.replace(/^auth\//, "");
-    //     const formattedErrorCode = errorCodeWithoutAuth.replace(/-/g, " ");
-    //     // setError(formattedErrorCode);
-    //     toast.error(formattedErrorCode);
-    //   });
+    logIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Logged in Successfully");
+        setTimeout(function () {
+          window.location.href = "/";
+        }, 2000);
+      })
+      .catch((error) => {
+        const errorMessages = error.message;
+        const errorCode = errorMessages.split("(")[1].split(")")[0];
+        const errorCodeWithoutAuth = errorCode.replace(/^auth\//, "");
+        const formattedErrorCode = errorCodeWithoutAuth.replace(/-/g, " ");
+        // setError(formattedErrorCode);
+        toast.error(formattedErrorCode);
+      });
   };
   const handleShowPassword = () => {
     setShow(!show);

@@ -1,11 +1,60 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaGithub, FaLock, FaUser } from "react-icons/fa";
 import { MdEmail, MdInsertPhoto } from "react-icons/md";
 import { Link } from "react-router-dom";
-import '../../assets/Utility.css'
+import "../../assets/Utility.css";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
+  const { signUp } = useContext(AuthContext);
   const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const email = data.get("email");
+    const password = data.get("password");
+    const photo = data.get("photo");
+    const name = data.get("name");
+    setError("");
+    setPhotoUrl(photo);
+    if (password.length < 6) {
+      setError("Password need to be at-least 6 characters");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setError("Password must need to contain an Uppercase letter ");
+      return;
+    }
+    if (!/^(?=.*[a-z]).+$/.test(password)) {
+      setError("Password must need to contain an LowerCase letter ");
+      return;
+    }
+    signUp(email, password)
+      .then((result) => {
+        updateProfile(result.user, {
+          photoURL: photo,
+          displayName: name,
+        });
+        toast.success("Successfully created your account");
+        setTimeout(function () {
+          // console.log("redirect");
+          location.reload();
+          window.location.href = "/";
+        }, 2000);
+      })
+      .catch((error) => {
+        const errorMessages = error.message;
+        const errorCode = errorMessages.split("(")[1].split(")")[0];
+        const errorCodeWithoutAuth = errorCode.replace(/^auth\//, "");
+        const formattedErrorCode = errorCodeWithoutAuth.replace(/-/g, " ");
+        setError(formattedErrorCode);
+      });
+  };
   const handleShowPassword = () => {
     setShow(!show);
     console.log(show);
@@ -17,7 +66,7 @@ const SignUp = () => {
           Create your Account!
         </h1>
 
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleSignUp}>
           <div className="form-control relative">
             <FaUser className="w-5 h-5 absolute  top-2 " />
 
@@ -86,6 +135,7 @@ const SignUp = () => {
               Sign Up
             </button>
           </div>
+          <p className="text-red-600 text-center">{error}</p>
 
           <p className="mt-7 text-center text-gray-400">
             Already Have an account{" "}

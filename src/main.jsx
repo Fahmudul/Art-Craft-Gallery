@@ -10,6 +10,7 @@ import MyArtAndCraftList from "./Pages/MyArtAndCraftList/MyArtAndCraftList.jsx";
 import Signin from "./Pages/Signin/Signin.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
+      <Toaster />
     </AuthProvider>
   </React.StrictMode>
 );
