@@ -56,12 +56,12 @@ const SignUp = () => {
       });
   };
   const handleGoogleSignIn = () => {
+    console.log(GoogleSignIn);
     GoogleSignIn()
       .then((result) => {
         console.log(result.user);
         toast.success("Successfully created your account");
         setTimeout(function () {
-          // console.log("redirect");
           location.reload();
           window.location.href = "/";
         }, 2000);
@@ -72,7 +72,6 @@ const SignUp = () => {
   };
   const handleShowPassword = () => {
     setShow(!show);
-    console.log(show);
   };
   return (
     <div className="hero min-h-screen bg-custom-background">
@@ -164,7 +163,7 @@ const SignUp = () => {
               <button
                 className="btn"
                 onClick={() => {
-                  handleGoogleSignIn;
+                  handleGoogleSignIn();
                 }}
               >
                 <svg
