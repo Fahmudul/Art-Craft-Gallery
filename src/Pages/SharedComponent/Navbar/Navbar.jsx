@@ -19,7 +19,7 @@ const Navbar = () => {
           to="/artCraftSection"
           className="mr-6 text-[#CCCCCC] text-lg pb-1 px-2"
         >
-          All Art &craft Items
+          All Art & Craft Items
         </NavLink>
       </li>
       <li>
@@ -36,7 +36,7 @@ const Navbar = () => {
           to="/myCraftAndArt"
           className="mr-6 text-[#CCCCCC] text-lg pb-1 px-2"
         >
-          My Art & CraftList
+          My Art & Craft List
         </NavLink>
       </li>
     </>
@@ -53,13 +53,13 @@ const Navbar = () => {
   };
   return (
     <div className="w-[90%] mx-auto ">
-      <div className="navbar bg-transparent pt-5">
-        <div className="navbar-start">
+      <div className="navbar bg-transparent pt-5 px-0 flex justify-between">
+        <div className="navbar-start w-auto">
           <div className="dropdown ">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden "
+              className="btn btn-ghost lg:hidden px-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -81,18 +81,31 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 shadow bg-gradient-to-r from-black to-gray-700 rounded-box  z-20  w-[300px] p-3"
             >
               {navLink}
-              <Link
-                to="/signin"
-                className="btn btn-ghost bg-gray-800  text-white text-base mr-3 mb-2 mt-2"
-              >
-                Login
-              </Link>
-              <Link
-                to="/signup"
-                className="btn btn-ghost bg-gray-800  text-white text-base"
-              >
-                Register
-              </Link>
+              {user ? (
+                <div className="flex gap-2 lg:space-x-5 items-center">
+                  <button
+                    onClick={handleSignOut}
+                    className="btn btn-ghost bg-gray-800 text-white text-lg"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              ) : (
+                <div className="hidden md:block lg:block">
+                  <Link
+                    to="/signin"
+                    className="btn btn-ghost bg-gray-800  text-white text-base mr-3"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="btn btn-ghost bg-gray-800  text-white text-base"
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
             </ul>
           </div>
           <a className="btn btn-ghost text-2xl pl-1 text-[#CCCCCC] flex items-center font-bold ">
@@ -104,7 +117,7 @@ const Navbar = () => {
           <ul className="menu-horizontal px-1 z-20">{navLink}</ul>
         </div>
 
-        <div className="navbar-end">
+        <div className="navbar-end w-auto">
           {user ? (
             <div className="flex gap-2 lg:space-x-5 items-center">
               <img
@@ -114,7 +127,7 @@ const Navbar = () => {
               />
               <button
                 onClick={handleSignOut}
-                className="btn btn-ghost bg-gray-800 text-white text-lg"
+                className="btn btn-ghost bg-gray-800 text-white text-lg hidden md:block lg:block"
               >
                 Log Out
               </button>

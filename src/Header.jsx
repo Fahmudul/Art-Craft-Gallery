@@ -15,6 +15,7 @@ import "swiper/css/autoplay";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import "./Utility.css";
+import { Helmet } from "react-helmet";
 // import slider_1 from './assets/slider_1.jpg'
 function CategoryCard({ title, description }) {
   return (
@@ -35,6 +36,11 @@ const Header = () => {
   //   const AutoplaySlider = withAutoplay(AwesomeSlider);
   return (
     <div className="w-[90%] mx-auto mt-5 rounded-lg ">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>PaletteParadise | Home</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={50}
@@ -43,7 +49,6 @@ const Header = () => {
         autoplay={true}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        
       >
         <SwiperSlide>
           <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_1  text-center flex justify-start md:px-3 lg:px-9 items-center">

@@ -5,3 +5,10 @@
 .custom_shadow{
   box-shadow: rgba(43, 43, 44, 0.014) 0px 4px 16px, rgba(46, 45, 45, 0.151) 0px 8px 24px, rgba(166, 166, 168, 0.836) 0px 16px 56px;
 }
+@media screen and (min-width:600px){
+  .tablet{
+    box-shadow: rgba(43, 43, 44, 0.014) 0px 4px 16px, rgba(46, 45, 45, 0.151) 0px 8px 24px, rgba(166, 166, 168, 0.836) 0px 16px 56px;
+
+  
+}
+}

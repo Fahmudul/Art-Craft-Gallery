@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import auth from "../../FireBaseConfig/FirebaseConfig";
 import { updateProfile } from "firebase/auth";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
   const { signUp, GoogleSignIn } = useContext(AuthContext);
@@ -105,6 +106,11 @@ const SignUp = () => {
   };
   return (
     <div className="hero min-h-screen bg-custom-background">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>PaletteParadise | Register</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-blur">
         <h1 className=" text-center text-xl font-bold mt-4 text-white">
           Create your Account!

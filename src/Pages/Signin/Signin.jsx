@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../../../src/Utility.css";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 const Signin = () => {
   const { logIn } = useContext(AuthContext);
 
@@ -39,6 +40,11 @@ const Signin = () => {
 
   return (
     <div className="hero min-h-screen bg-custom-background">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>PaletteParadise | Login</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-blur ">
         <h1 className="text-[#cccccc] text-center text-xl font-bold mt-4">
           Welcome Back!

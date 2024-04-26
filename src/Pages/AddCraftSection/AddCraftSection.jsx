@@ -1,5 +1,6 @@
 import "../../Utility.css";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 const AddCraftSection = () => {
   const handleAddCoffee = (event) => {
     event.preventDefault();
@@ -52,103 +53,137 @@ const AddCraftSection = () => {
   };
 
   return (
-    <div className="custom_shadow bg-blur w-[90%] mx-auto mt-4 rounded-xl  p-24">
-      <h2 className="text-3xl font-extrabold text-center text-[#cccccc]">
-        Add a Coffee
+    <div className="tablet  md:border lg:border-none border w-[90%] mx-auto mt-4 rounded-xl p-4 md:p-12 lg:p-24">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>PaletteParadise | Add Craft</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      <h2 className="text-3xl font-extrabold text-center text-[#cccccc] mb-4">
+        Add Your Art & Craft
       </h2>
       <form onSubmit={handleAddCoffee}>
         {/* form name and quantity row */}
-        <div className="md:flex mb-8">
-          <div className="form-control md:w-1/2">
+        <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Coffee Name</span>
+              <span className="label-text  text-base font-bold text-[#cccccc]">
+                Name
+              </span>
             </label>
             <label className="input-group">
               <input
-                type="text"
+                type="name"
                 name="name"
-                placeholder="Coffee Name"
+                placeholder="Your Name"
                 className="input input-bordered w-full"
               />
             </label>
           </div>
-          <div className="form-control md:w-1/2 ml-4">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Available Quantity</span>
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Email
+              </span>
             </label>
             <label className="input-group">
               <input
-                type="text"
-                name="quantity"
-                placeholder="Available Quantity"
+                type="email"
+                name="email"
+                placeholder="Your Email"
                 className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
         {/* form supplier row */}
-        <div className="md:flex mb-8">
-          <div className="form-control md:w-1/2">
+        <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Supplier Name</span>
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Item Name
+              </span>
             </label>
             <label className="input-group">
               <input
                 type="text"
-                name="supplier"
-                placeholder="Supplier Name"
+                name="item_name"
+                placeholder="Your Item"
                 className="input input-bordered w-full"
               />
             </label>
           </div>
-          <div className="form-control md:w-1/2 ml-4">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Taste</span>
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Subcategory
+              </span>
             </label>
             <label className="input-group">
               <input
                 type="text"
-                name="taste"
-                placeholder="Taste"
+                name="subcategory"
+                placeholder="Provide a subcategory"
                 className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
         {/* form category and details row */}
-        <div className="md:flex mb-8">
-          <div className="form-control md:w-1/2">
+        <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Category</span>
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Short Description
+              </span>
             </label>
             <label className="input-group">
               <input
                 type="text"
-                name="category"
-                placeholder="Category"
+                name="description"
+                placeholder="Description"
                 className="input input-bordered w-full"
               />
             </label>
           </div>
-          <div className="form-control md:w-1/2 ml-4">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Details</span>
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Price
+              </span>
             </label>
             <label className="input-group">
               <input
                 type="text"
-                name="details"
-                placeholder="Details"
+                name="price"
+                placeholder="Price"
                 className="input input-bordered w-full"
               />
             </label>
           </div>
         </div>
         {/* form Photo url row */}
-        <div className="mb-8">
-          <div className="form-control w-full">
+        <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
-              <span className="label-text">Photo URL</span>
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Rating
+              </span>
+            </label>
+            <label className="input-group">
+              <input
+                type="text"
+                name="rating"
+                placeholder="Rating"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+          <div className="form-control w-full md:w-1/2 lg:w-1/2">
+            <label className="label">
+              <span className="label-text text-base font-bold text-[#cccccc]">
+                Photo URL
+              </span>
             </label>
             <label className="input-group">
               <input
@@ -160,7 +195,11 @@ const AddCraftSection = () => {
             </label>
           </div>
         </div>
-        <input type="submit" value="Add Coffee" className="btn btn-block" />
+        <input
+          type="submit"
+          value="Add Coffee"
+          className="btn btn-block btn-ghost bg-gray-800 text-white text-base font-bold"
+        />
       </form>
     </div>
   );
