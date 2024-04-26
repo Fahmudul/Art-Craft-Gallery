@@ -1,4 +1,4 @@
- import {
+import {
   Navigation,
   Pagination,
   Scrollbar,
@@ -20,7 +20,9 @@ function CategoryCard({ title, description }) {
   return (
     <div className="lg:w-[35%] text-left  shadow-lg rounded-lg overflow-hidden m-4 bg-blur text-white">
       <div className="p-6 flex flex-col gap-y-2">
-        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">{title}</h3>
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+          {title}
+        </h3>
         <p className=" text-xl mb-4 ">{description}</p>
         <Link className="btn btn-ghost bg-gray-800 flex text-white font-bold py-2 px-4 rounded-full text-center ">
           Explore Now
@@ -41,11 +43,10 @@ const Header = () => {
         autoplay={true}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        
       >
         <SwiperSlide>
-          <div className="rounded-2xl min-h-[800px] slider_image_1  text-center flex justify-start md:px-3 lg:px-9 items-center">
+          <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_1  text-center flex justify-start md:px-3 lg:px-9 items-center">
             <CategoryCard
               title="Explore the Beauty of Nature"
               description="Immerse yourself in the tranquil beauty of landscapes, capturing the essence of nature's wonders on canvas."
@@ -53,7 +54,7 @@ const Header = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="rounded-2xl min-h-[800px] slider_image_2  text-center flex justify-end md:px-3 lg:px-9 items-center">
+          <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_2  text-center flex justify-end md:px-3 lg:px-9 items-center">
             <CategoryCard
               title="Discover the Art of Portraiture"
               description="Dive into the world of portrait drawing and learn to capture the unique essence and personality of individuals."
@@ -61,7 +62,7 @@ const Header = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="rounded-2xl min-h-[800px] slider_image_3  text-center flex justify-start md:px-3 lg:px-9 items-center">
+          <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_3  text-center flex justify-start md:px-3 lg:px-9 items-center">
             <CategoryCard
               title="Dive into Vibrant Watercolours"
               description="Experience the magical world of watercolour painting, where colors blend effortlessly to create stunning masterpieces."
@@ -69,7 +70,7 @@ const Header = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="rounded-2xl min-h-[800px] slider_image_4  text-center flex justify-end md:px-3 lg:px-9 items-center">
+          <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_4  text-center flex justify-end md:px-3 lg:px-9 items-center">
             <CategoryCard
               title="Master the Richness of Oils"
               description="Delve into the depth and richness of oil painting, exploring techniques to create captivating textures and depth."
@@ -77,7 +78,7 @@ const Header = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="rounded-2xl min-h-[800px] slider_image_5  text-center flex justify-start md:px-3 lg:px-9 items-center">
+          <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_5  text-center flex justify-start md:px-3 lg:px-9 items-center">
             <CategoryCard
               title="Unleash the Power of Charcoal"
               description="Unleash your creativity with the bold strokes of charcoal, capturing emotion and depth in expressive sketches."
@@ -85,7 +86,7 @@ const Header = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="rounded-2xl min-h-[800px] slider_image_6  text-center flex justify-end md:px-3 lg:px-9 items-center">
+          <div className="rounded-2xl h-[500px] lg:min-h-[800px] slider_image_6  text-center flex justify-end md:px-3 lg:px-9 items-center">
             <CategoryCard
               title="Bring Characters to Life"
               description="Enter the whimsical world of cartoon drawing, where imagination knows no bounds, and every line tells a story."

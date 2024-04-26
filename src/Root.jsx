@@ -3,7 +3,7 @@ import "./Root.css";
 import Navbar from "./Pages/SharedComponent/Navbar/Navbar";
 const Root = () => {
   return (
-    <div className="background">
+    <div className="background min-h-screen">
       <Navbar></Navbar>
       <Outlet></Outlet>
     </div>

@@ -55,11 +55,15 @@ const Navbar = () => {
     <div className="w-[90%] mx-auto ">
       <div className="navbar bg-transparent pt-5">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div className="dropdown ">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -74,9 +78,21 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 shadow bg-gradient-to-r from-black to-gray-700 rounded-box  z-20  w-[300px] p-3"
             >
               {navLink}
+              <Link
+                to="/signin"
+                className="btn btn-ghost bg-gray-800  text-white text-base mr-3 mb-2 mt-2"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="btn btn-ghost bg-gray-800  text-white text-base"
+              >
+                Register
+              </Link>
             </ul>
           </div>
           <a className="btn btn-ghost text-2xl pl-1 text-[#CCCCCC] flex items-center font-bold ">
@@ -85,7 +101,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal px-1">{navLink}</ul>
+          <ul className="menu-horizontal px-1 z-20">{navLink}</ul>
         </div>
 
         <div className="navbar-end">
@@ -104,7 +120,7 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-            <div>
+            <div className="hidden md:block lg:block">
               <Link
                 to="/signin"
                 className="btn btn-ghost bg-gray-800  text-white text-base mr-3"
