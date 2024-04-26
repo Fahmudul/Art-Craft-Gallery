@@ -1,10 +1,17 @@
 import React, { useContext, useState } from "react";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  GithubAuthProvider,
+} from "firebase/auth";
 import { FaEye, FaEyeSlash, FaGithub, FaLock, FaUser } from "react-icons/fa";
 import { MdEmail, MdInsertPhoto } from "react-icons/md";
 import { Link } from "react-router-dom";
-import "../../assets/Utility.css";
+import "../../../src/Utility.css";
+
 import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import auth from "../../FireBaseConfig/FirebaseConfig";
 import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
@@ -13,6 +20,8 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
 
+  const provider = new GoogleAuthProvider();
+  const gitHubProvider = new GithubAuthProvider();
   const handleSignUp = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -57,9 +66,12 @@ const SignUp = () => {
   };
   const handleGoogleSignIn = () => {
     console.log(GoogleSignIn);
-    GoogleSignIn()
+
+    signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result.user);
+        const photoUrl = result.user?.photoURL;
+        setPhotoUrl(photoUrl);
         toast.success("Successfully created your account");
         setTimeout(function () {
           location.reload();
@@ -70,6 +82,24 @@ const SignUp = () => {
         toast.error(error);
       });
   };
+  const handleGitHubSignIn = () => {
+    signInWithPopup(auth, gitHubProvider)
+      .then((result) => {
+        // console.log(result.user);
+        const photoUrl = result.user?.photoURL;
+        setPhotoUrl(photoUrl);
+        toast.success("Successfully created your account");
+        setTimeout(function () {
+          // console.log("redirect");
+          location.reload();
+          window.location.href = "/";
+        }, 2000);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
+
   const handleShowPassword = () => {
     setShow(!show);
   };
@@ -196,7 +226,12 @@ const SignUp = () => {
               </button>
             </div>
             <div>
-              <button className="btn">
+              <button
+                className="btn"
+                onClick={() => {
+                  handleGitHubSignIn();
+                }}
+              >
                 <FaGithub className="w-5 h-5" />
                 Github Login
               </button>

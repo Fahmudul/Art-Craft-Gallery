@@ -11,11 +11,14 @@ import Signin from "./Pages/Signin/Signin.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
+import ErrorElements from "./Pages/ErrorElement/ErrorElement.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorElements></ErrorElements>,
     children: [
       {
         path: "/",
@@ -27,11 +30,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/addCraft",
-        element: <AddCraftSection></AddCraftSection>,
+        element: (
+          <PrivateRoute>
+            <AddCraftSection></AddCraftSection>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myCraftAndArt",
-        element: <MyArtAndCraftList></MyArtAndCraftList>,
+        element: (
+          <PrivateRoute>
+            <MyArtAndCraftList></MyArtAndCraftList>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signin",

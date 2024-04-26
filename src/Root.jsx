@@ -5,7 +5,6 @@ const Root = () => {
   return (
     <div className="background">
       <Navbar></Navbar>
-
       <Outlet></Outlet>
     </div>
   );
