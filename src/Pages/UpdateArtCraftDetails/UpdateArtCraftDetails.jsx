@@ -2,6 +2,7 @@ import { useLoaderData, useLocation } from "react-router-dom";
 import "../../Utility.css";
 
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 
 const UpdateArtCraftDetails = () => {
   const needToUpdateArtAndCraft = useLoaderData();
@@ -27,7 +28,6 @@ const UpdateArtCraftDetails = () => {
     const rating = form.rating.value;
     const photo = form.photo.value;
     const processingTime = form.processingTime.value;
-    // console.log(customization, inStock);
     const updatedArtCraftDetails = {
       item_name,
       subcategory,
@@ -40,9 +40,9 @@ const UpdateArtCraftDetails = () => {
       inStock,
     };
     fetch(
-      `http://http://localhost:5000/updateArtCraft/${needToUpdateArtAndCraft._id}`,
+      `http://localhost:5000/updateArtCraft/${needToUpdateArtAndCraft._id}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
@@ -50,7 +50,19 @@ const UpdateArtCraftDetails = () => {
       }
     )
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            text: "Your Art/Craft Updated Successfully",
+            icon: "success",
+            confirmButtonText: "Update another Art/Craft",
+          });
+          setTimeout(() => {
+            window.location.href = "/myCraftAndArt";
+          }, 2000);
+        }
+      });
   };
   return (
     <div className="tablet  md:border lg:border-none border w-[90%] mx-auto mt-4 rounded-xl p-4 md:p-12 lg:p-24">
