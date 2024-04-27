@@ -1,9 +1,13 @@
+import { useLocation } from "react-router-dom";
 import "../../Utility.css";
-import Swal from "sweetalert2";
+
 import { Helmet } from "react-helmet";
-const AddCraftSection = () => {
+
+const UpdateArtCraftDetails = () => {
   let customization;
   let inStock;
+  const location = useLocation()
+  console.log(location)
   const handleRadioChange = (e) => {
     // console.log(e.target.value);
     if (e.target.value == "yes" || e.target.value == "no") {
@@ -12,13 +16,10 @@ const AddCraftSection = () => {
       inStock = e.target.value;
     }
   };
-  const handleAddArtOrCraft = (event) => {
-    event.preventDefault();
+  const handleUpdateArtOrCraft = (e) => {
+    e.preventDefault();
 
-    const form = event.target;
-
-    const name = form.name.value;
-    const email = form.email.value;
+    const form = e.target;
     const item_name = form.item_name.value;
     const subcategory = form.subcategory.value;
     const description = form.description.value;
@@ -27,9 +28,7 @@ const AddCraftSection = () => {
     const photo = form.photo.value;
     const processingTime = form.processingTime.value;
     // console.log(customization, inStock);
-    const newArtCraftDetails = {
-      name,
-      email,
+    const updatedArtCraftDetails = {
       item_name,
       subcategory,
       description,
@@ -40,75 +39,20 @@ const AddCraftSection = () => {
       customization,
       inStock,
     };
-
-    // send data to the server via POST
-    fetch("http://localhost:5000/artsandcrafts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newArtCraftDetails),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Your Art/Craft Added Successfully",
-            icon: "success",
-            confirmButtonText: "Add more",
-          });
-        }
-      });
+    // fetch(`http://http://localhost:5000/updateArtCraft/${}`)
   };
-
   return (
     <div className="tablet  md:border lg:border-none border w-[90%] mx-auto mt-4 rounded-xl p-4 md:p-12 lg:p-24">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>PaletteParadise | Add Craft</title>
+        <title>PaletteParadise | Update Your Art/Craft</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <h2 className="text-3xl font-extrabold text-center text-[#cccccc] mb-4">
-        Add Your Art & Craft
+        Update Your Art & Craft
       </h2>
-      <form onSubmit={handleAddArtOrCraft}>
-        {/* form name and quantity row */}
-        <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
-          <div className="form-control w-full md:w-1/2 lg:w-1/2">
-            <label className="label">
-              <span className="label-text  text-base font-bold text-[#cccccc]">
-                Name
-              </span>
-            </label>
-            <label className="input-group">
-              <input
-                type="name"
-                name="name"
-                placeholder="Your Name"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
-          </div>
-          <div className="form-control w-full md:w-1/2 lg:w-1/2">
-            <label className="label">
-              <span className="label-text text-base font-bold text-[#cccccc]">
-                Email
-              </span>
-            </label>
-            <label className="input-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                className="input input-bordered w-full"
-                required
-              />
-            </label>
-          </div>
-        </div>
-        {/* form supplier row */}
+      <form onSubmit={handleUpdateArtOrCraft}>
+        {/* form item name and subcategory row */}
         <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
           <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
@@ -143,9 +87,8 @@ const AddCraftSection = () => {
             </label>
           </div>
         </div>
-        {/* form category and details row */}
 
-        {/* form category and details row */}
+        {/* form short description and price row */}
         <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
           <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
@@ -180,7 +123,7 @@ const AddCraftSection = () => {
             </label>
           </div>
         </div>
-        {/* form Photo url row */}
+        {/* form Rating and photoURL row */}
         <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
           <div className="form-control w-full md:w-1/2 lg:w-1/2">
             <label className="label">
@@ -215,6 +158,7 @@ const AddCraftSection = () => {
             </label>
           </div>
         </div>
+        {/* form processing time customize and stock Status row */}
 
         <div className="flex flex-col md:flex-row lg:flex-row mb-8 gap-3">
           <div className="form-control w-full md:w-1/2 lg:w-1/2 mb-4">
@@ -237,7 +181,7 @@ const AddCraftSection = () => {
             <div className="form-control w-full md:w-1/2 lg:w-1/2 ">
               <label className="label">
                 <span className="label-text text-base font-bold text-[#cccccc]">
-                  Customize Description
+                  Customize
                 </span>
               </label>
               <div className="flex gap-5">
@@ -317,11 +261,11 @@ const AddCraftSection = () => {
           </div>
         </div>
         <button className=" w-full custom-btn btn-7 text-lg  font-bold">
-          <input type="submit" value="Add Your Art/Craft" />
+          <input type="submit" value="Update Your Art/Craft" />
         </button>
       </form>
     </div>
   );
 };
 
-export default AddCraftSection;
+export default UpdateArtCraftDetails;

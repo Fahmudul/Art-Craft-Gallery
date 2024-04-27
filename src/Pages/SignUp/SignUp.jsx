@@ -46,16 +46,29 @@ const SignUp = () => {
     }
     signUp(email, password)
       .then((result) => {
+        const userData = { email, name };
+
         updateProfile(result.user, {
           photoURL: photo,
           displayName: name,
         });
-        toast.success("Successfully created your account");
-        setTimeout(function () {
-          // console.log("redirect");
-          location.reload();
-          window.location.href = "/";
-        }, 2000);
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Successfully created your account");
+              setTimeout(function () {
+                location.reload();
+                window.location.href = "/";
+              }, 2000);
+            }
+          });
       })
       .catch((error) => {
         const errorMessages = error.message;
@@ -74,10 +87,10 @@ const SignUp = () => {
         const photoUrl = result.user?.photoURL;
         setPhotoUrl(photoUrl);
         toast.success("Successfully created your account");
-        setTimeout(function () {
-          location.reload();
-          window.location.href = "/";
-        }, 2000);
+        // setTimeout(function () {
+        //   location.reload();
+        //   window.location.href = "/";
+        // }, 2000);
       })
       .catch((error) => {
         toast.error(error);
@@ -86,15 +99,15 @@ const SignUp = () => {
   const handleGitHubSignIn = () => {
     signInWithPopup(auth, gitHubProvider)
       .then((result) => {
-        // console.log(result.user);
+        console.log(result.user);
         const photoUrl = result.user?.photoURL;
         setPhotoUrl(photoUrl);
         toast.success("Successfully created your account");
-        setTimeout(function () {
-          // console.log("redirect");
-          location.reload();
-          window.location.href = "/";
-        }, 2000);
+        // setTimeout(function () {
+        //   // console.log("redirect");
+        //   location.reload();
+        //   window.location.href = "/";
+        // }, 2000);
       })
       .catch((error) => {
         toast.error(error);

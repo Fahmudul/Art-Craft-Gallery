@@ -13,6 +13,8 @@ import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 import ErrorElements from "./Pages/ErrorElement/ErrorElement.jsx";
+import ViewDetails from "./Pages/ViewDetails/ViewDetails.jsx";
+import UpdateArtCraftDetails from "./Pages/UpdateArtCraftDetails/UpdateArtCraftDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,20 @@ const router = createBrowserRouter([
       {
         path: "/artCraftSection",
         element: <AllArtAndCraft></AllArtAndCraft>,
+        loader: () =>
+          fetch("https://art-craft-store-server-lac.vercel.app/artsandcrafts"),
+      },
+      {
+        path: "/artCraftSection/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails></ViewDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://art-craft-store-server-lac.vercel.app/artsandcrafts/${params.id}`
+          ),
       },
       {
         path: "/addCraft",
@@ -37,12 +53,23 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/updateArtCraft/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateArtCraftDetails></UpdateArtCraftDetails>
+          </PrivateRoute>
+        ),
+        loader: ()=>fetch(`http://localhost:5000/artsandcrafts/662bf905c872ea51250b4c35`)
+      },
+      {
         path: "/myCraftAndArt",
         element: (
           <PrivateRoute>
             <MyArtAndCraftList></MyArtAndCraftList>
           </PrivateRoute>
         ),
+        loader: () =>
+          fetch("https://art-craft-store-server-lac.vercel.app/artsandcrafts"),
       },
       {
         path: "/signin",
