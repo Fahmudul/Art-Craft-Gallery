@@ -1,13 +1,13 @@
-import { useLocation } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import "../../Utility.css";
 
 import { Helmet } from "react-helmet";
 
 const UpdateArtCraftDetails = () => {
+  const needToUpdateArtAndCraft = useLoaderData();
   let customization;
   let inStock;
-  const location = useLocation()
-  console.log(location)
+  //   console.log(needToUpdateArtAndCraft._id)
   const handleRadioChange = (e) => {
     // console.log(e.target.value);
     if (e.target.value == "yes" || e.target.value == "no") {
@@ -39,7 +39,18 @@ const UpdateArtCraftDetails = () => {
       customization,
       inStock,
     };
-    // fetch(`http://http://localhost:5000/updateArtCraft/${}`)
+    fetch(
+      `http://http://localhost:5000/updateArtCraft/${needToUpdateArtAndCraft._id}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedArtCraftDetails),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <div className="tablet  md:border lg:border-none border w-[90%] mx-auto mt-4 rounded-xl p-4 md:p-12 lg:p-24">

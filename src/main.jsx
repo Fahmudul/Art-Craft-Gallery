@@ -59,7 +59,8 @@ const router = createBrowserRouter([
             <UpdateArtCraftDetails></UpdateArtCraftDetails>
           </PrivateRoute>
         ),
-        loader: ()=>fetch(`http://localhost:5000/artsandcrafts/662bf905c872ea51250b4c35`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/artsandcrafts/${params.id}`),
       },
       {
         path: "/myCraftAndArt",
