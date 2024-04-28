@@ -18,6 +18,9 @@ import "./Utility.css";
 import { Helmet } from "react-helmet";
 import { Typewriter } from "react-simple-typewriter";
 import ArtAndCraftCard from "./Pages/ArtAndCraftCard/ArtAndCraftCard";
+import SubcategoryArtAndCraft from "./Pages/SubcategoryArtAndCraft/SubcategoryArtAndCraft";
+import Testimonial from "./Pages/Testimonial/Testimonial";
+// import ContactForm from "./Pages/ContactForm/ContactForm";
 function CategoryCard({ title, description }) {
   return (
     <div className="lg:w-[35%] text-left  shadow-lg rounded-lg overflow-hidden m-4 bg-blur text-white">
@@ -103,7 +106,7 @@ const Header = () => {
       </Swiper>
       {/* Art and Craft section*/}
       <div className="mt-5 md:mt-7 lg:mt-14">
-        <div className="App text-[#cccccc] font-bold text-center text-5xl">
+        <div className="App text-[#cccccc] font-bold text-center text-3xl h-[100px] md:text-4xl lg:text-5xl">
           <Typewriter
             words={[
               "Explore the World Through Landscape Painting",
@@ -119,7 +122,7 @@ const Header = () => {
             delaySpeed={1000}
           />
         </div>
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-y-5 lg:gap-10 md:gap-x-4 mx-auto  px-2">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-y-5 lg:gap-10 md:gap-x-4 mx-auto  px-2">
           {ArtAndCraftSections.length > 8
             ? ArtAndCraftSections.slice(0, 7).map((ArtAndCraftSection) => (
                 <ArtAndCraftCard
@@ -134,6 +137,43 @@ const Header = () => {
                 ></ArtAndCraftCard>
               ))}
         </div>
+      </div>
+      {/* Art and Craft section based on subcategory*/}
+      <div className="lg:mt-[100px]">
+        <div className="App text-[#cccccc] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
+          <h1 className="text-[#928f8f]">
+            Discover your creativity through{" "}
+            <Typewriter
+              words={[
+                "Landscape Painting",
+                "Portrait Drawing",
+                "Watercolour Painting",
+                "Oil Painting",
+                "Beauty of Sketching",
+                "Whimsical Adventures",
+              ]}
+              loop={false}
+              // typeSpeed={40}
+              cursor
+              delaySpeed={900}
+              deleteSpeed={50}
+            />
+          </h1>
+        </div>
+        <div>
+          <SubcategoryArtAndCraft></SubcategoryArtAndCraft>
+        </div>
+      </div>
+      {/* Testimonial section*/}
+      <div className=" md:mt-8 mt-5 lg:mt-10">
+        <h1 className="text-[#cccccc] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
+          What Our Client Says About us
+        </h1>
+        <Testimonial></Testimonial>
+      </div>
+      {/* Testimonial section*/}
+      <div>
+        
       </div>
     </div>
   );

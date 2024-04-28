@@ -41,6 +41,7 @@ const MyArtAndCraftList = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
+              // console.log()
               Swal.fire({
                 title: "Success!",
                 text: "Art/Craft has been Deleted!",
@@ -50,7 +51,9 @@ const MyArtAndCraftList = () => {
               const remaining = availableArtAndCrafts.filter(
                 (matchedArtCraft) => matchedArtCraft._id !== _id
               );
-              // console.log(availableArtAndCrafts);
+              setAvailableArtAndCrafts(remaining);
+              console.log(availableArtAndCrafts);
+
               setFilteredArtAndCraft(remaining);
             }
           });
@@ -62,6 +65,7 @@ const MyArtAndCraftList = () => {
     let optionValue = document.getElementById("list").value.toLowerCase();
     if (optionValue == "default") {
       setFilteredArtAndCraft(availableArtAndCrafts);
+      console.log(availableArtAndCrafts);
     } else {
       const filterdByCustomizationArtAndCraft = availableArtAndCrafts.filter(
         (availableArtAndCraft) =>
@@ -105,7 +109,7 @@ const MyArtAndCraftList = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-10 mt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 lg:grid-cols-4 lg:gap-10 mt-16">
         {filteredArtAndCraft.map((card) => (
           <SingleCard
             key={card._id}

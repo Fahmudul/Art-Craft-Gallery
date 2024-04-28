@@ -15,7 +15,7 @@ const ArtAndCraftCard = ({ ArtAndCraftSection }) => {
   } = ArtAndCraftSection;
   console.log(item_name, subcategory);
   const backgroundStyle = {
-    background: `linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)), url(${photo})`,
+    background: `linear-gradient(140deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${photo})`,
     backgroundRepeat: "no-repeat",
     // backgroundPosition: "center",
     backgroundSize: "auto 400px",
@@ -27,10 +27,10 @@ const ArtAndCraftCard = ({ ArtAndCraftSection }) => {
         <div className="flex flex-col items-center justify-center mt-[330px] relative">
           <h3 className="text-[#a2a2a2] z-4 text-3xl font-bold">{item_name}</h3>
           <p className="text-[#a2a2a2] z-4 text-xl">{subcategory}</p>
-          <p className="text-center w-[80%] h-[75px] text-[#474343]">
+          <p className="text-center w-[80%] h-[75px] text-[#474343] overflow-hidden">
             {description.slice(0, 150)}
           </p>
-          <div className="flex  w-full px-10 my-5">
+          <div className="flex  w-full md:px-3 lg:px-10 my-5">
             <div className="flex flex-col items-center border-r-2 w-[200px]">
               <h className="text-center text-[#a8aaac] text-xl">Rating</h>
               <p className="text-3xl  text-center text-[#a2a2a2] font-bold">

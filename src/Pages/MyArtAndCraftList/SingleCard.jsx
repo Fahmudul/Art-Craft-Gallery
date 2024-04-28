@@ -21,13 +21,13 @@ const SingleCard = ({ card, handleDelete }) => {
               className="cover item-a"
               style={{ backgroundImage: `url(${photo})` }}
             >
-              <h1>
+              <h1 className="">
                 {item_name}
 
                 <p className="text-white text-xl">Rating : {rating}.0</p>
               </h1>
               <div className="price flex flex-col items-end gap-y-2">
-                <p>${price}</p>
+                <p className="text-lg">${price}</p>
                 {customization == "yes" ? (
                   <MdOutlineDashboardCustomize />
                 ) : (
@@ -48,7 +48,9 @@ const SingleCard = ({ card, handleDelete }) => {
                 <Link to={`/updateArtCraft/${_id}`} className="button">
                   Update
                 </Link>
-                <button onClick={()=>handleDelete(_id)} className="button">Delete</button>
+                <button onClick={() => handleDelete(_id)} className="button">
+                  Delete
+                </button>
               </div>
             </div>
           </div>
