@@ -13,10 +13,11 @@ import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/autoplay";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "./Utility.css";
 import { Helmet } from "react-helmet";
-// import slider_1 from './assets/slider_1.jpg'
+import { Typewriter } from "react-simple-typewriter";
+import ArtAndCraftCard from "./Pages/ArtAndCraftCard/ArtAndCraftCard";
 function CategoryCard({ title, description }) {
   return (
     <div className="lg:w-[35%] text-left  shadow-lg rounded-lg overflow-hidden m-4 bg-blur text-white">
@@ -33,7 +34,8 @@ function CategoryCard({ title, description }) {
   );
 }
 const Header = () => {
-  //   const AutoplaySlider = withAutoplay(AwesomeSlider);
+  const ArtAndCraftSections = useLoaderData();
+  // console.log(ArtAndCraftSection);
   return (
     <div className="w-[90%] mx-auto mt-5 rounded-lg ">
       <Helmet>
@@ -99,6 +101,40 @@ const Header = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+      {/* Art and Craft section*/}
+      <div className="mt-5 md:mt-7 lg:mt-14">
+        <div className="App text-[#cccccc] font-bold text-center text-5xl">
+          <Typewriter
+            words={[
+              "Explore the World Through Landscape Painting",
+              "Delve into the Art of Portrait Drawing",
+              "Immerse Yourself in Watercolour Painting",
+              "Journey through the World of Oil Painting",
+              "Unveil the Beauty of Sketching",
+              "Embark on Whimsical Adventures",
+            ]}
+            loop={false}
+            // typeSpeed={40}
+            cursor
+            delaySpeed={1000}
+          />
+        </div>
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-y-5 lg:gap-10 md:gap-x-4 mx-auto  px-2">
+          {ArtAndCraftSections.length > 8
+            ? ArtAndCraftSections.slice(0, 7).map((ArtAndCraftSection) => (
+                <ArtAndCraftCard
+                  key={ArtAndCraftSection._id}
+                  ArtAndCraftSection={ArtAndCraftSection}
+                ></ArtAndCraftCard>
+              ))
+            : ArtAndCraftSections.map((ArtAndCraftSection) => (
+                <ArtAndCraftCard
+                  key={ArtAndCraftSection._id}
+                  ArtAndCraftSection={ArtAndCraftSection}
+                ></ArtAndCraftCard>
+              ))}
+        </div>
+      </div>
     </div>
   );
 };

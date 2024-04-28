@@ -19,7 +19,9 @@ const MyArtAndCraftList = () => {
   const [availableArtAndCrafts, setAvailableArtAndCrafts] = useState(
     matchedArtAndCraftForEachUser
   );
-  const [filteredArtAndCraft, setFilteredArtAndCraft] = useState(matchedArtAndCraftForEachUser);
+  const [filteredArtAndCraft, setFilteredArtAndCraft] = useState(
+    matchedArtAndCraftForEachUser
+  );
   // console.log(availableArtAndCrafts);
   const handleDelete = (_id) => {
     // console.log(_id);
@@ -49,7 +51,7 @@ const MyArtAndCraftList = () => {
                 (matchedArtCraft) => matchedArtCraft._id !== _id
               );
               // console.log(availableArtAndCrafts);
-              setAvailableArtAndCrafts(remaining);
+              setFilteredArtAndCraft(remaining);
             }
           });
       }
