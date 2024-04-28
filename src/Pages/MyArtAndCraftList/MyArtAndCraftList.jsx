@@ -9,16 +9,17 @@ const MyArtAndCraftList = () => {
   const { user } = useContext(AuthContext);
   // console.log(user.email);
   const ArtAndCrafts = useLoaderData();
-  console.log(ArtAndCrafts);
+  // console.log(ArtAndCrafts);
   const userEmail = user.email;
   console.log(userEmail);
   const matchedArtAndCraftForEachUser = ArtAndCrafts.filter(
     (ArtAndCraft) => ArtAndCraft.email == userEmail
   );
-  console.log(matchedArtAndCraftForEachUser);
+  // console.log(matchedArtAndCraftForEachUser);
   const [availableArtAndCrafts, setAvailableArtAndCrafts] = useState(
     matchedArtAndCraftForEachUser
   );
+  const [filteredArtAndCraft, setFilteredArtAndCraft] = useState(matchedArtAndCraftForEachUser);
   // console.log(availableArtAndCrafts);
   const handleDelete = (_id) => {
     // console.log(_id);
@@ -54,31 +55,20 @@ const MyArtAndCraftList = () => {
       }
     });
   };
-  // const handleBookFilter = (filter) => {
-  //   if (filter === "default") {
-  //     setDisplayReadBook(readBook);
-  //   } else if (filter === "totalPages") {
-  //     const sortedBooks = sortBooksByRatingDescending(
-  //       [...readBook],
-  //       "totalPages"
-  //     );
-  //     setDisplayReadBook(sortedBooks);
-  //   } else if (filter === "rating") {
-  //     const sortedBooks = sortBooksByRatingDescending([...readBook], "rating");
-  //     setDisplayReadBook(sortedBooks);
-  //   } else if (filter === "yearOfPublishing") {
-  //     const sortedBooks = sortBooksByRatingDescending(
-  //       [...readBook],
-  //       "yearOfPublishing"
-  //     );
-  //     setDisplayReadBook(sortedBooks);
-  //   }
-  // };
-  // const getOptionValue = () => {
-  //   let optionValue = document.getElementById("list").value;
 
-  //   handleBookFilter(optionValue);
-  // };
+  const getOptionValue = () => {
+    let optionValue = document.getElementById("list").value.toLowerCase();
+    if (optionValue == "default") {
+      setFilteredArtAndCraft(availableArtAndCrafts);
+    } else {
+      const filterdByCustomizationArtAndCraft = availableArtAndCrafts.filter(
+        (availableArtAndCraft) =>
+          availableArtAndCraft.customization == optionValue
+      );
+      setFilteredArtAndCraft(filterdByCustomizationArtAndCraft);
+      console.log(filterdByCustomizationArtAndCraft);
+    }
+  };
 
   return (
     <div className="w-[90%] mx-auto">
@@ -90,19 +80,31 @@ const MyArtAndCraftList = () => {
       <h1 className="text-5xl text-white font-bold mt-6 mb-10 text-center">
         Your Personal Collection
       </h1>
-      <div className="flex justify-center">
-        <div className="box  " id="list">
-          <select>
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
-            <option>Option 4</option>
-            <option>Option 5</option>
-          </select>
+
+      <div className="flex flex-col items-center justify-center">
+        <label
+          htmlFor=""
+          className="text-[#cccccc] text-center text-2xl md:text-[28px] lg:text-3xl mb-5"
+        >
+          Sort by Customization
+        </label>
+        <div className="flex justify-center border">
+          <div className="box">
+            <select
+              id="list"
+              onChange={() => {
+                getOptionValue();
+              }}
+            >
+              <option>Default</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-10 mt-16">
-        {availableArtAndCrafts.map((card) => (
+        {filteredArtAndCraft.map((card) => (
           <SingleCard
             key={card._id}
             card={card}
