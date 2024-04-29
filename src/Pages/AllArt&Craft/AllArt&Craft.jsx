@@ -6,7 +6,7 @@ const AllArtAndCraft = () => {
   const loadedArtsAndCraft = useLoaderData();
   // const [allArtCrafts, setAllArtCrafts] = useState(loadedArtsAndCraft);
   const handleViewDetails = (_id) => {
-    fetch(`http://localhost:5000/artsandcrafts/${_id}`)
+    fetch(`https://art-craft-store-server-lac.vercel.app/artsandcrafts/${_id}`)
       .then((res) => res.json())
       .then((data) => console.log(data));
   };

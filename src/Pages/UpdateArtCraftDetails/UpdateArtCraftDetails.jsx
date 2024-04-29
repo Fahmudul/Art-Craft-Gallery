@@ -40,7 +40,7 @@ const UpdateArtCraftDetails = () => {
       inStock,
     };
     fetch(
-      `http://localhost:5000/updateArtCraft/${needToUpdateArtAndCraft._id}`,
+      `https://art-craft-store-server-lac.vercel.app/updateArtCraft/${needToUpdateArtAndCraft._id}`,
       {
         method: "PUT",
         headers: {

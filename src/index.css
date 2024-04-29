@@ -1,3 +1,13 @@
+:root{
+    --body_background:#a2a4a5;
+}
+[data-theme="dark"]{
+    --body_background:radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(64, 64, 64) 90.2%);
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* *{
+    transition: all 0.4s ease-in-out;
+} */

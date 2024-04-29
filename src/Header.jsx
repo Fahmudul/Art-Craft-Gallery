@@ -4,12 +4,15 @@ import {
   Scrollbar,
   A11y,
   Autoplay,
+  FreeMode,
 } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/bundle";
+// import './styles.css';
+import "swiper/css/free-mode";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/autoplay";
 import "./Header.css";
@@ -20,6 +23,8 @@ import { Typewriter } from "react-simple-typewriter";
 import ArtAndCraftCard from "./Pages/ArtAndCraftCard/ArtAndCraftCard";
 import SubcategoryArtAndCraft from "./Pages/SubcategoryArtAndCraft/SubcategoryArtAndCraft";
 import Testimonial from "./Pages/Testimonial/Testimonial";
+import ContactForm from "./Pages/ContactForm/ContactForm.jsx";
+import { useEffect, useState } from "react";
 // import ContactForm from "./Pages/ContactForm/ContactForm";
 function CategoryCard({ title, description }) {
   return (
@@ -38,9 +43,44 @@ function CategoryCard({ title, description }) {
 }
 const Header = () => {
   const ArtAndCraftSections = useLoaderData();
+  const [subCategoryArtAndCraftSection, setSubCategoryArtAndCraftSection] =
+    useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/subcategory")
+      .then((res) => res.json())
+      .then((data) => setSubCategoryArtAndCraftSection(data));
+  }, []);
+
+  const [slidesPerView, setSlidesPerView] = useState(4); // Default value for desktop
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        // For tablets and smaller devices
+        setSlidesPerView(2);
+      } else if (window.innerWidth <= 1026) {
+        // For tablets
+        setSlidesPerView(2);
+      } else {
+        // For desktop
+        setSlidesPerView(4);
+      }
+    };
+
+    // Initial setup
+    handleResize();
+
+    // Listen to window resize event
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   // console.log(ArtAndCraftSection);
   return (
-    <div className="w-[90%] mx-auto mt-5 rounded-lg ">
+    <div className="w-[90%] mx-auto mt-5 rounded-lg">
       <Helmet>
         <meta charSet="utf-8" />
         <title>PaletteParadise | Home</title>
@@ -106,7 +146,7 @@ const Header = () => {
       </Swiper>
       {/* Art and Craft section*/}
       <div className="mt-5 md:mt-7 lg:mt-14">
-        <div className="App text-[#cccccc] font-bold text-center text-3xl h-[100px] md:text-4xl lg:text-5xl">
+        <div className="App text-[#4b4949] font-bold text-center text-3xl h-[100px] md:text-4xl lg:text-5xl">
           <Typewriter
             words={[
               "Explore the World Through Landscape Painting",
@@ -140,8 +180,8 @@ const Header = () => {
       </div>
       {/* Art and Craft section based on subcategory*/}
       <div className="lg:mt-[100px]">
-        <div className="App text-[#cccccc] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
-          <h1 className="text-[#928f8f]">
+        <div className="App text-[#000000] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
+          <h1 className="text-[#4b4949]">
             Discover your creativity through{" "}
             <Typewriter
               words={[
@@ -161,19 +201,39 @@ const Header = () => {
           </h1>
         </div>
         <div>
-          <SubcategoryArtAndCraft></SubcategoryArtAndCraft>
+          <Swiper
+            slidesPerView={slidesPerView}
+            spaceBetween={30}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="mySwiper"
+          >
+            {subCategoryArtAndCraftSection.map((subCategory) => (
+              <SwiperSlide key={subCategory._id} className="">
+                <SubcategoryArtAndCraft
+                  subCategory={subCategory}
+                ></SubcategoryArtAndCraft>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
       {/* Testimonial section*/}
       <div className=" md:mt-8 mt-5 lg:mt-10">
-        <h1 className="text-[#cccccc] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
+        <h1 className="text-[#4b4949] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
           What Our Client Says About us
         </h1>
         <Testimonial></Testimonial>
       </div>
-      {/* Testimonial section*/}
-      <div>
-        
+      {/* Contact Us section*/}
+      <div className="md:mt-8 mt-5 lg:mt-10">
+        <h1 className="text-[#4b4949] font-bold text-center text-3xl h-[100px]  md:text-4xl lg:text-5xl">
+          Keep In Touch
+        </h1>
+        <ContactForm></ContactForm>
       </div>
     </div>
   );

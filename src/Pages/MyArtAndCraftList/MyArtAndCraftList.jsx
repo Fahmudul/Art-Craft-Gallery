@@ -35,7 +35,7 @@ const MyArtAndCraftList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/update/${_id}`, {
+        fetch(`https://art-craft-store-server-lac.vercel.app/update/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -77,7 +77,7 @@ const MyArtAndCraftList = () => {
   };
 
   return (
-    <div className="w-[90%] mx-auto">
+    <div className="w-[94%] mx-auto ">
       <Helmet>
         <meta charSet="utf-8" />
         <title>PaletteParadise | My Art & Craft List</title>
@@ -109,7 +109,7 @@ const MyArtAndCraftList = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 lg:grid-cols-4 lg:gap-10 mt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2  md:gap-5 lg:grid-cols-4 lg:gap-10 mt-16 ">
         {filteredArtAndCraft.map((card) => (
           <SingleCard
             key={card._id}

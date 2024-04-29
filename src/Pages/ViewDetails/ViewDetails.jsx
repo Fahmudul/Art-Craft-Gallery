@@ -20,7 +20,7 @@ const ViewDetails = () => {
         <div className="custom_border_radius transparent_linear w-full lg:h-[600px] h-[450px] top-0 absolute z-1 "></div>
         <div className="lg:h-[470px] min-h-[300px] md:h-[350px] w-[80%] sm:w-[40%] lg:w-[25%] md:w-[300px] top-20 md:top-10 lg:top-14 bg-blur absolute left-7  lg:left-[5%] z-2 text-white flex flex-col gap-y-4 items-center justify-center custom_border_radius_1">
           <p className="text-2xl">{detailsArtAndCraft?.item_name}</p>
-          <h1 className="text-5xl ">{detailsArtAndCraft?.subcategory}</h1>
+          <h1 className="text-4xl font-bold">{detailsArtAndCraft?.subcategory}</h1>
           <button className="btn btn-ghost bg-gray-800">Buy Now</button>
         </div>
       </div>

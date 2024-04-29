@@ -42,7 +42,7 @@ const AddCraftSection = () => {
     };
 
     // send data to the server via POST
-    fetch("http://localhost:5000/artsandcrafts", {
+    fetch("https://art-craft-store-server-lac.vercel.app/artsandcrafts", {
       method: "POST",
       headers: {
         "content-type": "application/json",

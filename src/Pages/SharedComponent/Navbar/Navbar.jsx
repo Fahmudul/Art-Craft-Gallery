@@ -4,20 +4,22 @@ import logo_img from "../../../assets/logo/logo_2.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import DarkLightSwitch from "../../DarkLightSwitch/DarkLightSwitch";
+// import DarkMode from "../../DarkMode/DarkMode.jsx";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const navLink = (
     <>
       <li>
-        <NavLink to="/" className="mr-6 text-[#CCCCCC] text-lg pb-1 px-2">
+        <NavLink to="/" className="mr-6 text-[#4b4949] text-lg pb-1 px-2">
           Home
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/artCraftSection"
-          className="mr-6 text-[#CCCCCC] text-lg pb-1 px-2"
+          className="mr-6 text-[#4b4949] text-lg pb-1 px-2"
         >
           All Art & Craft Items
         </NavLink>
@@ -25,7 +27,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/addCraft"
-          className="mr-6 text-[#CCCCCC] text-lg pb-1 px-2"
+          className="mr-6 text-[#4b4949] text-lg pb-1 px-2"
         >
           {" "}
           Add Craft Item
@@ -34,7 +36,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/myCraftAndArt"
-          className="mr-6 text-[#CCCCCC] text-lg pb-1 px-2"
+          className="mr-6 text-[#4b4949] text-lg pb-1 px-2"
         >
           My Art & Craft List
         </NavLink>
@@ -108,7 +110,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl pl-1 text-[#CCCCCC] flex items-center font-bold ">
+          <a className="btn btn-ghost text-2xl pl-1 text-[#4b4949] flex items-center font-bold ">
             <img src={logo_img} alt="" className="w-9 h-9  bg-transparent" />
             PaletteParadise{" "}
           </a>
@@ -120,6 +122,7 @@ const Navbar = () => {
         <div className="navbar-end w-auto">
           {user ? (
             <div className="flex gap-2 lg:space-x-5 items-center">
+              <DarkLightSwitch></DarkLightSwitch>
               <img
                 className="h-10 w-10 rounded-full"
                 title={user.displayName}
@@ -134,6 +137,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="hidden md:block lg:block">
+              <DarkLightSwitch></DarkLightSwitch>
               <Link
                 to="/signin"
                 className="btn btn-ghost bg-gray-800  text-white text-base mr-3"

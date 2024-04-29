@@ -1,6 +1,6 @@
 :root {
     /* Colors */
-    --brand-color: hsl(46, 100%, 50%);
+    --brand-color:#3A6073;
     --black: hsl(0, 0%, 0%);
     --white: hsl(0, 0%, 100%);
     /* Fonts */
@@ -73,10 +73,10 @@
     --flow-space: 0.9375rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-self: flex-end;
     height: 55%;
-    padding: 12% 1.25rem 1.875rem;
+    /* padding: 12% 1.25rem 1.875rem; */
     background: linear-gradient(
       180deg,
       hsla(0, 0%, 0%, 0) 0%,
@@ -114,7 +114,8 @@
     font-weight: bold;
     border-radius: 0.45em;
     border: none;
-    background-color: var(--brand-color);
+    /* background-color: var(--brand-color); */
+    background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%);
     font-family: var(--font-title);
     font-size: 1.125rem;
     color: var(--black);
@@ -124,10 +125,11 @@
     outline: 2px solid black;
     outline-offset: -5px;
   }
+
   
   @media (any-hover: hover) and (any-pointer: fine) {
     .card__content {
-      transform: translateY(62%);
+      transform: translateY(42%);
       transition: transform 500ms ease-out;
       transition-delay: 500ms;
     }

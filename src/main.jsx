@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 import ErrorElements from "./Pages/ErrorElement/ErrorElement.jsx";
 import ViewDetails from "./Pages/ViewDetails/ViewDetails.jsx";
 import UpdateArtCraftDetails from "./Pages/UpdateArtCraftDetails/UpdateArtCraftDetails.jsx";
+import SubCategoryPage from "./Pages/SubcategoryArtAndCraft/SubCategoryPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/artsandcrafts/${params.id}`),
+          fetch(
+            `https://art-craft-store-server-lac.vercel.app/artsandcrafts/${params.id}`
+          ),
       },
       {
         path: "/myCraftAndArt",
@@ -81,6 +84,12 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/subcategory/:subcategory",
+        element: <SubCategoryPage></SubCategoryPage>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/subcategory/${params.subcategory}`),
       },
     ],
   },

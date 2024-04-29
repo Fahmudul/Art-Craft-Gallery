@@ -14,17 +14,17 @@ const SingleCard = ({ card, handleDelete }) => {
   return (
     <>
       {/* Hello world */}
-      <div className="row ">
+      <div className="row mx-auto">
         <div className="col-md-4 col-sm-6 col-xs-12 ">
-          <div className="card">
+          <div className="card ">
             <div
               className="cover item-a"
               style={{ backgroundImage: `url(${photo})` }}
             >
-              <h1 className="">
+              <h1 className=" text-4xl w-[280px] leading-[30px]">
                 {item_name}
 
-                <p className="text-white text-xl">Rating : {rating}.0</p>
+                <p className="text-white text-xl mt-4">Rating : {rating}.0</p>
               </h1>
               <div className="price flex flex-col items-end gap-y-2">
                 <p className="text-lg">${price}</p>
