@@ -33,15 +33,15 @@ const SignUp = () => {
     setError("");
     setPhotoUrl(photo);
     if (password.length < 6) {
-      setError("Password need to be at-least 6 characters");
+      toast.error("Password need to be at-least 6 characters");
       return;
     }
     if (!/[A-Z]/.test(password)) {
-      setError("Password must need to contain an Uppercase letter ");
+      toast.error("Password must need to contain an Uppercase letter ");
       return;
     }
     if (!/^(?=.*[a-z]).+$/.test(password)) {
-      setError("Password must need to contain an LowerCase letter ");
+      toast.error("Password must need to contain an LowerCase letter ");
       return;
     }
     signUp(email, password)
@@ -52,7 +52,7 @@ const SignUp = () => {
           photoURL: photo,
           displayName: name,
         });
-        fetch("http://localhost:5000/user", {
+        fetch("https://art-craft-store-server-lac.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -76,6 +76,7 @@ const SignUp = () => {
         const errorCodeWithoutAuth = errorCode.replace(/^auth\//, "");
         const formattedErrorCode = errorCodeWithoutAuth.replace(/-/g, " ");
         setError(formattedErrorCode);
+        toast.error(formattedErrorCode);
       });
   };
   const handleGoogleSignIn = () => {
@@ -87,10 +88,10 @@ const SignUp = () => {
         const photoUrl = result.user?.photoURL;
         setPhotoUrl(photoUrl);
         toast.success("Successfully created your account");
-        // setTimeout(function () {
-        //   location.reload();
-        //   window.location.href = "/";
-        // }, 2000);
+        setTimeout(function () {
+          location.reload();
+          window.location.href = "/";
+        }, 2000);
       })
       .catch((error) => {
         toast.error(error);
@@ -124,7 +125,10 @@ const SignUp = () => {
         <title>PaletteParadise | Register</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-blur">
+      <div
+        className="card shrink-0 w-full max-w-sm shadow-2xl bg-[#979696] "
+        style={{ height: "670px", display: "block" }}
+      >
         <h1 className=" text-center text-xl font-bold mt-4 text-white">
           Create your Account!
         </h1>
@@ -194,13 +198,12 @@ const SignUp = () => {
             </span>
           </div>
           <div className="form-control mt-6">
-            <button className="btn bg-blue-500 border-none text-white">
+            <button className="btn bg-gray-800 border-none text-white">
               Sign Up
             </button>
           </div>
-          <p className="text-red-600 text-center">{error}</p>
 
-          <p className="mt-7 text-center text-gray-400">
+          <p className="mt-3 mb-3 text-center ">
             Already Have an account{" "}
             <Link className="underline  text-blue-800" to="/signin">
               Sign In
@@ -210,7 +213,7 @@ const SignUp = () => {
           <div className="flex gap-2 mx-auto mb-5">
             <div>
               <button
-                className="btn"
+                className="btn w-[140px] px-0"
                 onClick={() => {
                   handleGoogleSignIn();
                 }}
@@ -246,7 +249,7 @@ const SignUp = () => {
             </div>
             <div>
               <button
-                className="btn"
+                className="btn w-[140px] px-0"
                 onClick={() => {
                   handleGitHubSignIn();
                 }}

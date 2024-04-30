@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Testimonial.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const Testimonial = () => {
+  useEffect(() => {
+    AOS.init({ duration: 400 });
+  }, []);
   return (
-    <div className="flex  justify-center lg:flex-row md:flex-row flex-wrap">
-      <figure className="snip1390">
+    <div className="flex  justify-center lg:flex-row md:flex-row flex-wrap ">
+      <figure
+        className="snip1390"
+        data-aos="fade-right"
+        data-aos-offset="200"
+        data-aos-delay="40"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+      >
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample3.jpg"
           alt="profile-sample3"
@@ -19,7 +32,14 @@ const Testimonial = () => {
           </blockquote>
         </figcaption>
       </figure>
-      <figure className="snip1390 hover">
+      <figure
+        className="snip1390 hover"
+        data-aos="fade-right"
+        data-aos-offset="200"
+        data-aos-delay="40"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+      >
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample5.jpg"
           alt="profile-sample5"
@@ -35,7 +55,14 @@ const Testimonial = () => {
           </blockquote>
         </figcaption>
       </figure>
-      <figure className="snip1390">
+      <figure
+        className="snip1390"
+        data-aos="fade-left"
+        data-aos-offset="200"
+        data-aos-delay="40"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+      >
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample6.jpg"
           alt="profile-sample6"
@@ -51,7 +78,14 @@ const Testimonial = () => {
           </blockquote>
         </figcaption>
       </figure>
-      <figure className="snip1390">
+      <figure
+        className="snip1390"
+        data-aos="fade-left"
+        data-aos-offset="200"
+        data-aos-delay="40"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+      >
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample6.jpg"
           alt="profile-sample6"

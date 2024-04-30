@@ -94,7 +94,7 @@ const MyArtAndCraftList = () => {
         >
           Sort by Customization
         </label>
-        <div className="flex justify-center border">
+        <div className="flex justify-center ">
           <div className="box">
             <select
               id="list"

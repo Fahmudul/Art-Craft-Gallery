@@ -6,6 +6,7 @@ import "../../../src/Utility.css";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import "../../Utility.css";
 const Signin = () => {
   const { logIn } = useContext(AuthContext);
 
@@ -29,7 +30,6 @@ const Signin = () => {
         const errorCode = errorMessages.split("(")[1].split(")")[0];
         const errorCodeWithoutAuth = errorCode.replace(/^auth\//, "");
         const formattedErrorCode = errorCodeWithoutAuth.replace(/-/g, " ");
-        // setError(formattedErrorCode);
         toast.error(formattedErrorCode);
       });
   };
@@ -39,17 +39,17 @@ const Signin = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-custom-background">
+    <div className="hero min-h-screen ">
       <Helmet>
         <meta charSet="utf-8" />
         <title>PaletteParadise | Login</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-blur ">
+      <div className="card shrink-0 w-full max-w-sm  bg-blur bg-[#979696]">
         <h1 className="text-[#cccccc] text-center text-xl font-bold mt-4">
           Welcome Back!
         </h1>
-        <form className="card-body" onSubmit={handleSignIn}>
+        <form className="card-body " onSubmit={handleSignIn}>
           <div className="form-control relative">
             <MdEmail className="w-5 h-5 absolute  top-[9px]" />
             <label className="label">
@@ -86,7 +86,7 @@ const Signin = () => {
             </span>
           </div>
           <div className="form-control mt-3">
-            <button className="btn bg-blue-500 outline-none border-none text-white">
+            <button className="btn bg-gray-800 outline-none border-none text-white">
               Login
             </button>
           </div>

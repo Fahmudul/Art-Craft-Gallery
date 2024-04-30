@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ContactForm.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ContactForm = () => {
+  useEffect(() => {
+    AOS.init({ duration: 400 });
+  }, []);
   return (
-    <div className="cardd mx-auto w-[95%] lg:w-[85%]">
+    <div
+      className="cardd mx-auto w-[95%] lg:w-[85%]"
+      data-aos="zoom-out"
+      data-aos-offset="200"
+      data-aos-delay="40"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
       <h2>Contact Us</h2>
       <div className="roww">
         <div className="col">

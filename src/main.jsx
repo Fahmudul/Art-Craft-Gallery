@@ -89,7 +89,9 @@ const router = createBrowserRouter([
         path: "/subcategory/:subcategory",
         element: <SubCategoryPage></SubCategoryPage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/subcategory/${params.subcategory}`),
+          fetch(
+            `https://art-craft-store-server-lac.vercel.app/subcategory/${params.subcategory}`
+          ),
       },
     ],
   },

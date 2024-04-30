@@ -6,6 +6,7 @@ import {
   Autoplay,
   FreeMode,
 } from "swiper/modules";
+import { Slide } from "react-awesome-reveal";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,18 +26,22 @@ import SubcategoryArtAndCraft from "./Pages/SubcategoryArtAndCraft/SubcategoryAr
 import Testimonial from "./Pages/Testimonial/Testimonial";
 import ContactForm from "./Pages/ContactForm/ContactForm.jsx";
 import { useEffect, useState } from "react";
-// import ContactForm from "./Pages/ContactForm/ContactForm";
+import "animate.css";
 function CategoryCard({ title, description }) {
   return (
     <div className="lg:w-[35%] text-left  shadow-lg rounded-lg overflow-hidden m-4 bg-blur text-white">
       <div className="p-6 flex flex-col gap-y-2">
-        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-          {title}
-        </h3>
-        <p className=" text-xl mb-4 ">{description}</p>
-        <Link className="btn btn-ghost bg-gray-800 flex text-white font-bold py-2 px-4 rounded-full text-center ">
-          Explore Now
-        </Link>
+        <Slide>
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+            {title}
+          </h3>
+          <p className=" text-xl mb-4 ">{description}</p>
+        </Slide>
+        <Slide direction="right">
+          <Link className="btn btn-ghost bg-gray-800 flex text-white font-bold py-2 px-4 rounded-full text-center ">
+            Explore Now
+          </Link>
+        </Slide>
       </div>
     </div>
   );
@@ -45,24 +50,24 @@ const Header = () => {
   const ArtAndCraftSections = useLoaderData();
   const [subCategoryArtAndCraftSection, setSubCategoryArtAndCraftSection] =
     useState([]);
+  const [showAll, setShowAll] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:5000/subcategory")
+    fetch("https://art-craft-store-server-lac.vercel.app/subcategory")
       .then((res) => res.json())
       .then((data) => setSubCategoryArtAndCraftSection(data));
   }, []);
 
-  const [slidesPerView, setSlidesPerView] = useState(4); // Default value for desktop
-
+  const [slidesPerView, setSlidesPerView] = useState(4);
+  const showMore = () => {
+    setShowAll(!showAll);
+  };
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        // For tablets and smaller devices
-        setSlidesPerView(2);
+        setSlidesPerView(1);
       } else if (window.innerWidth <= 1026) {
-        // For tablets
         setSlidesPerView(2);
       } else {
-        // For desktop
         setSlidesPerView(4);
       }
     };
@@ -145,8 +150,8 @@ const Header = () => {
         </SwiperSlide>
       </Swiper>
       {/* Art and Craft section*/}
-      <div className="mt-5 md:mt-7 lg:mt-14">
-        <div className="App text-[#4b4949] font-bold text-center text-3xl h-[100px] md:text-4xl lg:text-5xl">
+      <div className="mt-5 md:mt-7 lg:mt-14 ">
+        <div className="App text-[#4b4949] font-bold text-center text-3xl min-h-[120px] md:text-4xl lg:text-5xl">
           <Typewriter
             words={[
               "Explore the World Through Landscape Painting",
@@ -162,8 +167,11 @@ const Header = () => {
             delaySpeed={1000}
           />
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-y-5 lg:gap-10 md:gap-x-4 mx-auto  px-2">
-          {ArtAndCraftSections.length > 8
+        <div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-y-5 lg:gap-10 md:gap-x-4 mx-auto  px-2 animate__animated  animate__fadeInUp
+        "
+        >
+          {!showAll
             ? ArtAndCraftSections.slice(0, 7).map((ArtAndCraftSection) => (
                 <ArtAndCraftCard
                   key={ArtAndCraftSection._id}
@@ -176,6 +184,11 @@ const Header = () => {
                   ArtAndCraftSection={ArtAndCraftSection}
                 ></ArtAndCraftCard>
               ))}
+        </div>
+        <div className=" flex justify-center mt-5">
+          <button className="btn btn-ghost  " onClick={showMore}>
+            {!showAll ? "Show more" : "Show less"}
+          </button>
         </div>
       </div>
       {/* Art and Craft section based on subcategory*/}

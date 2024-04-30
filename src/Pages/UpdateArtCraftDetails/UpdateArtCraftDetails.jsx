@@ -1,11 +1,18 @@
 import { useLoaderData, useLocation } from "react-router-dom";
 import "../../Utility.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const UpdateArtCraftDetails = () => {
   const needToUpdateArtAndCraft = useLoaderData();
+  console.log(needToUpdateArtAndCraft)
+  useEffect(() => {
+    AOS.init({ duration: 400 });
+  }, []);
   let customization;
   let inStock;
   //   console.log(needToUpdateArtAndCraft._id)
@@ -65,7 +72,14 @@ const UpdateArtCraftDetails = () => {
       });
   };
   return (
-    <div className="tablet  md:border lg:border-none border w-[90%] mx-auto mt-4 rounded-xl p-4 md:p-12 lg:p-24">
+    <div
+      className="  md:border lg:border-none border w-[90%] mx-auto mt-4 rounded-xl p-4 md:p-12 lg:p-24 bg-[#797676]"
+      data-aos="zoom-out"
+      data-aos-offset="200"
+      data-aos-delay="40"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
       <Helmet>
         <meta charSet="utf-8" />
         <title>PaletteParadise | Update Your Art/Craft</title>
@@ -88,7 +102,7 @@ const UpdateArtCraftDetails = () => {
                 type="text"
                 name="item_name"
                 placeholder="Your Item"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-full"
                 required
               />
             </label>
@@ -100,13 +114,17 @@ const UpdateArtCraftDetails = () => {
               </span>
             </label>
             <label className="input-group">
-              <input
-                type="text"
+              <select
+                className="select select-bordered w-full text-[#cccccc] rounded-full"
                 name="subcategory"
-                placeholder="Provide a subcategory"
-                className="input input-bordered w-full"
-                required
-              />
+              >
+                <option>Landscape Painting</option>
+                <option>Portrait Drawing</option>
+                <option>Watercolour Painting</option>
+                <option>Oil Painting</option>
+                <option>Charcoal Sketching</option>
+                <option>Cartoon Drawing</option>
+              </select>
             </label>
           </div>
         </div>
@@ -124,7 +142,7 @@ const UpdateArtCraftDetails = () => {
                 type="text"
                 name="description"
                 placeholder="Description"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-full"
                 required
               />
             </label>
@@ -140,7 +158,7 @@ const UpdateArtCraftDetails = () => {
                 type="text"
                 name="price"
                 placeholder="Price"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-full"
                 required
               />
             </label>
@@ -159,7 +177,7 @@ const UpdateArtCraftDetails = () => {
                 type="text"
                 name="rating"
                 placeholder="Rating"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-full"
                 required
               />
             </label>
@@ -176,7 +194,7 @@ const UpdateArtCraftDetails = () => {
                 name="photo"
                 placeholder="Photo URL"
                 required
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-full"
               />
             </label>
           </div>
@@ -195,12 +213,12 @@ const UpdateArtCraftDetails = () => {
                 type="text"
                 name="processingTime"
                 placeholder="Processing Time"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-full"
                 required
               />
             </label>
           </div>
-          <div className="flex flex-col w-1/2 md:flex-row lg:flex-row mb-4 gap-3  items-center bg-blur px-3 rounded-lg border shadow-xl">
+          <div className="flex flex-col lg:w-1/2 md:flex-row lg:flex-row mb-4 gap-3  items-center bg-blur px-3 rounded-lg border shadow-xl">
             <div className="form-control w-full md:w-1/2 lg:w-1/2 ">
               <label className="label">
                 <span className="label-text text-base font-bold text-[#cccccc]">

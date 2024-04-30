@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { TfiYoutube } from "react-icons/tfi";
 const Footer = () => {
   return (
-    <footer className="mt-10 ">
+    <footer className="mt-6 md:mt-10 lg:mt-14 ">
       <div className="footer flex flex-col items-center justify-center ">
         <div className="row flex gap-10  justify-center">
           <a href="#">

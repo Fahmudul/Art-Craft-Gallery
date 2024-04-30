@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet";
 import "../../Utility.css";
 import { Link, useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const AllArtAndCraft = () => {
   const loadedArtsAndCraft = useLoaderData();
   // const [allArtCrafts, setAllArtCrafts] = useState(loadedArtsAndCraft);
@@ -10,8 +13,18 @@ const AllArtAndCraft = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
+  useEffect(() => {
+    AOS.init({ duration: 400 });
+  }, []);
   return (
-    <div className="w-[90%] mx-auto mt-5">
+    <div
+      className="w-[90%] mx-auto mt-5"
+      data-aos="zoom-out-down"
+      data-aos-offset="200"
+      data-aos-delay="40"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
       <Helmet>
         <meta charSet="utf-8" />
         <title>PaletteParadise | All Art & Craft</title>
