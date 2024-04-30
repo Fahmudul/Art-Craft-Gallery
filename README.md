@@ -6,6 +6,10 @@ Live Site: [PaletteParadise](https://assignment-10-97eb5.web.app/)
 
 ## Features
 
+- **Site Type:**
+
+  - Painting and Drawing.
+  
 - **Navigation:**
 
   - Navbar with links to Home, All Art and Craft, Add Art/Craft, My Art and Craft, and View Details pages.
