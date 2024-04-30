@@ -1,46 +1,70 @@
----
+# PaletteParadise
 
-# PaletteParadise Art And Craft Website
+PaletteParadise is a painting and drawing store website where users can explore various artworks, add their own creations, manage their profile, and interact with other users. The website features both a dark and light theme for better user experience.
 
-Welcome to HomeHeaven, a modern real estate website designed to provide users with a seamless experience for browsing properties, updating profiles, and managing authentication.
-
-## Live Site URL
-[PaletteParadise Live Site](https://haven-homes-f4687.web.app/)
-
-## Overview
-HomeHeaven is a comprehensive real estate platform that offers users the ability to explore property listings, update their profiles, and authenticate securely. With a user-friendly interface and robust features, HomeHeaven aims to revolutionize the way users interact with real estate websites.
+Live Site: [PaletteParadise](https://assignment-10-97eb5.web.app/)
 
 ## Features
-- **Navbar Functionality**: Navigate seamlessly with a dynamic navbar that adjusts based on login status. Access Home, All Art And Craft data created by all users are organized in table format , Add Craft Item page and My Art & Craft List where a user will see only his added art and craft .
-- **Authentication**: Securely log in using email and password or through popular social media platforms like Google, GitHub.
-- **Registration**: Register effortlessly with essential information such as name, email, and password, ensuring password strength with specific criteria.
-- **Slider Banner**: Engage users with an interactive slider banner featuring a minimum of six slides showcasing properties or promotions.
-- **Estate Details**: Explore detailed property information including amenities, location, and status. Navigate to individual property pages for more information.
-- **Protected Routes**: Certain pages like Update Profile and Estate Details are accessible only when logged in, ensuring privacy and security.
-- **Estate Listings**: Browse categorized estates with relevant information such as images, titles, descriptions, prices, and available facilities.
-- **Extra Route**: Access an additional protected route offering meaningful content, enhancing the user experience beyond basic property listings.
-- **Toast Alerts**: Receive instant feedback with toast or Sweet Alert notifications on successful login/register actions or errors in password validation.
 
-## NPM Packages Used
-- Swiper Slider
-- React Icons
-- AOS Package
-- Animate CSS
+- **Navigation:**
 
-## Usage
-To run the project locally:
+  - Navbar with links to Home, All Art and Craft, Add Art/Craft, My Art and Craft, and View Details pages.
+  - Dynamic website title that changes based on the page visited.
 
-1. Clone this repository.
-2. Install dependencies using `npm install`.
-3. Start the development server using `npm start`.
-4. Access the application at `http://localhost:3000`.
+- **Authentication:**
 
-## Contributing
-Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.
+  - User authentication with login and signup options.
+  - Google and GitHub sign-in options.
+  - Profile image displayed on the navbar upon logging in.
 
+- **Add Art/Craft:**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+  - Protected route for adding art/craft with a form.
+  - Strong password validation in the signup page.
 
----
+- **My Art and Craft:**
 
-Feel free to adjust the content or formatting according to your preferences!
+  - Protected route displaying user's added art/craft items.
+  - Each item displayed in a card format with delete and update options.
+  - Sorting functionality based on customization ('yes' or 'no').
+
+- **View Details:**
+
+  - Protected route to view detailed information about a specific art/craft item.
+
+- **Dark and Light Theme:**
+
+  - Toggle between dark and light themes for better user experience.
+
+- **Banner Slider:**
+
+  - Automatic slider with six banners representing different subcategories: Landscape Painting, Portrait Drawing, Watercolour Painting, Oil Painting, Charcoal Sketching, Cartoon Drawing.
+
+- **Art and Craft Section:**
+
+  - Display of minimum eight art and craft cards with a "show more" button to reveal additional items.
+
+- **Subcategory Art and Craft:**
+
+  - Display of six different subcategories.
+  - Redirects to specific subcategory pages showing relevant items when clicked.
+
+- **Customer Reviews:**
+
+  - Section for customer reviews.
+
+- **Get in Touch:**
+
+  - Section for users to get in touch.
+
+- **Footer:**
+  - Footer section containing necessary links and information.
+
+## Dependencies
+
+- [Swiper Slider](https://swiperjs.com/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [AOS](https://michalsnik.github.io/aos/)
+- [Animate.css](https://animate.style/)
+- [React Simple Typewriter](https://www.npmjs.com/package/react-simple-typewriter)
+- [React Awesome Reveal](https://www.npmjs.com/package/react-awesome-reveal)
