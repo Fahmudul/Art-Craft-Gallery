@@ -16,9 +16,9 @@
 
 **Running the Project Locally:**
 
-1. Clone client-side and server-side repositories.
-2. Install dependencies with `npm install`.
-3. Configure Firebase and MongoDB credentials.
-4. Start the client with `npm start` and the server with `npm run start:dev`.
+- **Clone client-side and server-side repositories.
+- **Install dependencies with `npm install`.
+- **Configure Firebase and MongoDB credentials.
+- **Start the client with `npm start` and the server with `npm run start:dev`.
 
 PaletteParadise empowers artists to discover, create, and share their passion with a supportive community.
